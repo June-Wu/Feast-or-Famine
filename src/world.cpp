@@ -3386,6 +3386,23 @@ void WorldSystem::in_game_click_handle(double xpos, double ypos, int button, int
 
 	if (player_state == set_up_stage || game_mode != NORMAL)
 	{
+		if (game_mode != NORMAL) {
+			if (ui_button == Button::fastforward_button)
+			{
+				if (speed_up_factor != 1.f)
+				{
+					UI_button::fastforward_light_off();
+					// set speed up factor
+					speed_up_factor = 1.f;
+				}
+				else
+				{
+					UI_button::fastforward_light_up();
+					// set speed up factor
+					speed_up_factor = FAST_SPEED;
+				}
+			}
+		}
 		if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS && in_game_area)
 			WantedBoard::updateWantedBoardDisplay(wanted_board_entity, false);
 		
